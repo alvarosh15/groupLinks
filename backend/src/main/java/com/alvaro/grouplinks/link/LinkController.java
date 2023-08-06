@@ -1,29 +1,27 @@
-package com.alvaro.grouplinks.controllers;
+package com.alvaro.grouplinks.link;
 
-
-import com.alvaro.grouplinks.entities.Link;
-import com.alvaro.grouplinks.service.LinkService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/{id}")
 public class LinkController {
 
-    public LinkService service;
+    private final LinkService service;
 
     public LinkController (LinkService service) {
         this.service = service;
     }
 
     @GetMapping
-    @ResponseStatus(code= HttpStatus.OK)
-    public Link obtainLink(@PathVariable Long id) {
+    @ResponseStatus(code=HttpStatus.OK)
+    public List<Link> obtainLink(@PathVariable String id) {
         return service.obtainLink(id);
     }
 
-    @PostMapping
+    @PostMapping(path = "/add")
     @ResponseStatus(code=HttpStatus.CREATED)
     public Link addInstitute(@RequestBody Link link) {
         service.addLink(link);
