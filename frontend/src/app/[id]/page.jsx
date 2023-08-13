@@ -4,7 +4,7 @@ import Image from "next/image";
 import RouterLink from "next/link";
 import AddButton from "../components/AddButton";
 
-export default function Links({ params }) {
+export default function Page({ params }) {
   const links = [
     {
       website: "Twitter",
